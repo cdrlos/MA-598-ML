@@ -1,4 +1,59 @@
-\section{}
+\section{A Review of Convolutional Neural Networks for Inverse Problems}
+\subsection{Background}
+The paper begins with a brief introduction on inverse problems and contrasts the
+traditional approach with the learning-based approach. To keep the mathematics
+simple, we will talk about the inverse problem as it applies to
+image-processing. An imaging system is an operator $H\colon\scrX\to\scrY$ that
+acts on an image $x\in\scrX$ and creates a vector of measurements $y\in\scrY$
+with $H(x)=y$. The inverse problem asks given a measurement $y$, can we recover
+the original image $x$? Mathematically, we are looking for reconstruction
+$R\colon\scrY\to\scrX$ which reverses the sampling done by $H$.
+
+\subsection{Objective function approach}
+The usual approach for finding $R$ is called the objective function approach,
+which models $H$ and recovers an estimate of $x$ from $y$ via
+\begin{equation}
+  \label{eq:sum-2:obj-fun-app}
+  R_{\text{obj}}(y)=\argmin_{x\in\scrX}f(H(x),y),
+\end{equation}
+where $f\colon\scrY\times\scrY\to\R^+$ is some appropriate measure of error. The
+inverse $\bar H^{-1}$ is usually found through filtered back projection (FBP)
+algorithm, or the back projection. However, these direct inverses show
+significant artifacts when the quality of the measurement decreases.
+
+\subsection{Learning-based approach}
+The proposed alternative is a learning approach, where a training set of ground
+truth images and their measurements $\set{(x_n,y_n);n=1,...,N}$ is know, and a
+parametric reconstruction algorithm is solved by
+\begin{equation}
+  \label{eq:sum-2:param-rec-alg}
+  R_{\text{learn}}=\argmin_{R_\theta,\theta\in\Theta}\sum_{n=1}^N f(x_n,R_\theta(y_n))+g(\theta),
+\end{equation}
+where $\Theta$ is the set of all possible parameters,
+$f\colon\scrX\times\scrX\to\R^+$ the measure error, and $g\colon\Theta\to\R^+$ a
+regularizer whose purpose is to avoid parameter overfitting.
+
+The learning-based approach has been successfully employed in CNN. It is
+mentioned in the paper that a CNN was first used in the 2012 ImageNet Large
+Scale Visual Recognition Challenge, which achieved an error rate of $15.3\%$ at
+the object localization and classification task, compared to a $26.2\%$ error
+rate for the next closest method, and subsequent CNN approaches only kept
+improving on this error rate in later competitions.
+
+\subsection{Designing CNN for inverse problems}
+The paper goes into some detail as to how to design CNN for the purpose of
+solving inverse problems. First, we must generate a training set. This can be a
+very daunting problem; especially for X-ray CT. But the set is typically
+obtained by corrupting images with noise and feeding both the original image and
+the corrupted one.
+
+\subsection{Preprocessing}
+Some amount of preprocessing is used in some CNN. This is typically achieved by
+using a direct inverse operator on the network input. That is, instead of
+$R_{\text{learn}}$, we have a composition of CNN with a direct inverse $R_g\circ
+\bar H^{-1}$. Examples of applications which use preprocessing are CT, which
+preprocessed using FBP, and MRI, which uses the inverse Fourier transform.
+
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
