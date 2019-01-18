@@ -1,29 +1,25 @@
 \section{A Survey of Model Compression and Acceleration for Deep Neural Networks}
-The paper surveys four methods that have been successfully used to reduce the
-complexity and size of deep neural networks (DNN for short).
-The four methods discussed are: parameter pruning and sharing, low-rank
+
+The paper presented surveys four methods of compressing the size and complexity
+of DNN. The four methods discussed are: parameter pruning, low-rank
 factorization, transferred/compact convolutional filters, and knowledge
 distillation.
 
 \subsection{Parameter pruning}
-Parameter pruning is the simplest method discussed in the paper. The idea behind
-it is to reduce the complexity of a DNN by removing parameters which are not
-crucial to the model. In the paper, three methods of parameter pruning are
-discussed: quantization and binarization, (more largely) pruning and sharing,
-and a structural matrix approach.
+Parameter perhaps the most conceptually simple method discussed in the paper.
+The idea behind it is this: to achieve a more compact DNN remove the non-crucial
+parameters from the model. Three methods of achieving this type of compression
+are discussed: quantization and binarization, pruning and sharing, and a
+structural matrix approach. 
 
-Quantization and binarization compresses the original DNN by reducing the number
-of bits used to represent the weights. This is achieved by first pruning
-unimportant connections in the DNN (retaining the sparsely connected ones) and
-then quantizing the link weights by using weight sharing. In the referenced
-paper, some further methods are applied, but we omit them here for briefness.
-
-The extremal case in this direction is called binarization, where we have a one
-bit representation of each weight. This is exactly what is done in, e.g,
-BinaryConnect, BinaryNet, etc. The drawback to this approach is that the
-accuracy of binary networks is lowered. Moreover, binarization schemes are based
-on simple matrix approximations and ignore the effects of binarization on
-accuracy.
+Of particular interest to the this reader was binarization. In particular, the
+extremal case where we force a one-bit representation of each weight as is done
+in successfully in several DNN such as BinaryConnect, BinaryNet, and XNORNet.
+But all is not good with such extreme compression, as the accuracy of binary
+networks is low when employed on very large CNN. But progress is being made in
+this direction, as there is strong empirical evidence that networks trained with
+back-propagation are resilient to specific weight distortions, in particular,
+binary weight.
 
 \subsection{Low-rank factorization}
 The second method discussed involves reducing the number of convolution
@@ -45,14 +41,18 @@ strong empirical evidence to support the notion that CNN posses a translation
 invariance of the following sort: If $T$ is a transform matrix, $x$ an input,
 and $\Phi$ a network,
 \begin{equation}\label{sum-1:eqv-gp-th}
-  T\Phi(x)=\Phi(Tx).
+  T\Phi(x)=\Phi(Tx);
 \end{equation}
+i.e., transforming the input $x$ by $T$ is the same as passing it through the
+network (or layer) $\Phi$ and then transforming the output by $T$. The idea is
+to apply certain transforms $T$ to a small set of base filters.
 
-\subsection{Knowledge distillation} 
+\subsection{Knowledge distillation}
+This methods follows a student-teacher approach where the teacher network is
+trained from scratch and the student network is penalized according to softened
+versions of the teacher's output. One of the drawbacks of this method can only
+be applied to classification tasks with a soft-max loss function.
 
-
-% \subsection*{A Review of Convolutional Neural Networks for Inverse Problems}
-% \subsubsection*{}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
