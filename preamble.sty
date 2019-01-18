@@ -48,16 +48,17 @@
 
 \let\bigsetminus\setminus \let\setminus\smallsetminus
 \ifxetex
-\let\A\bfA
-\let\I\bfI
-\let\N\bfN
-\let\Z\bfZ
-\let\Q\bfQ
-\let\F\bfF
-\let\k\bfk
-\let\K\bfK
-\let\R\bfR
-\let\C\bfC
+\let\A\bbA
+\let\I\bbI
+\let\N\bbN
+\let\Z\bbZ
+\let\Q\bbQ
+\let\F\bbF
+\let\k\bbk
+\let\K\bbK
+\let\R\bbR
+\let\C\bbC
+\renewcommand\QEDsol{\ensuremath{\vardiamondsuit}}
 \else
 
 \if@slides
@@ -125,13 +126,19 @@
 \if@times
 \setmainfont{STIX2Text-Regular.otf}
 \setmathfont{STIX2Math.otf}
-\fi
+\else\if@palatino
+\setmainfont[BoldFont=texgyrepagella-bold.otf,
+             ItalicFont=texgyrepagella-italic.otf,
+             BoldItalicFont=texgyrepagella-bolditalic.otf]
+             {texgyrepagella-regular.otf}
+\setmathfont{texgyrepagella-math.otf}
+\fi\fi
 
 \else
 %% Languages and fonts 
 \RequirePackage[T2A,T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
-\RequirePackage[main=english,french,german,spanish,russian]{babel}
+% \RequirePackage[main=english,french,german,spanish,russian]{babel}
 
 \if@times
 %\RequirePackage[upint]{stix2}
@@ -150,7 +157,7 @@
 \RequirePackage[heavycircles]{stmaryrd}
 \RequirePackage[nointegrals]{wasysym}
 \RequirePackage{esint}
-% \RequirePackage[lighttt]{lmodern}
+\RequirePackage[lighttt]{lmodern}
 \RequirePackage[cal=euler,scr=rsfso]{mathalfa}
 
 \if@sans
