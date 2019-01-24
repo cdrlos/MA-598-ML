@@ -1,4 +1,107 @@
-\section{}
+\section{U-Net: Convolutional Networks for Biomedical Image Segmentation}
+
+\subsection{Introductionss}
+CNNs have been performing very well
+
+There are hurdles in some domains
+
+Biomedical image processing needs localization segmentation
+
+Hard to get lots of data
+
+Hard to distinguish neighboriing cells
+
+\subsection{Past}
+
+Training in sliding window setup label for each pixel plus patch
+
+Pros: localization, more training samples
+
+Cons: slow, overlapping patches (which are inefficient)
+
+Tradeoff: localization accurasy vs context
+
+Large patches implies less localization, and smaller paches imply less context.
+
+\subsection{U-Net}
+
+A unet is a fully convolutional network. works well with very few images to
+train. It has better segmentation. The key ideas: starts with a set of
+contraction layers which caper the semantic/contextual information. Expansion
+layers which recover spatial information (use upsamlping to increase output
+resolution).
+
+Overlap tile strategy: Arbitrarily large images, not limite by GPU size.
+
+
+They also suggest ...
+
+\subsection{Training}
+Input images and corresponding segmentation maps are used for training.
+
+Uses a stochastic gradient descent.
+
+Energy function: pixel-wise softmax of feature map with cross entropy loss.
+
+The pixel wise softmax equation isomorphic softmax 
+\[
+  p_k(\bfx)=\exp(a_k(\bfx))/\parens[\bigg]{\sum_{k'=1}^K\exp(a_{k'}(\bfx))}
+\]
+
+$K=2$
+
+$\bfx$ pixel position in an image.
+$a_k(\bfx)$ output in feature channel $k$ at pixel $\bfx$
+
+$p_k(\bfx)\approx 1$ for the channel with maximum $a_k(\bfx)$ value.
+$p_k(\bfx)\approx 0$ for all other $k$.
+
+Weighted loss
+\[
+  E=-\sum_{\bfx\in\Omega}w(\bfx)\log(p_{l(\bfx)(\bfx)})
+\]
+$y=l(\bfx)$ ground truth at pixel $\bfx$ (background vs foreground).
+
+So
+\[
+  p_y(\bfx)=\begin{cases}
+    1&\text{if corrected prediction,}\\
+    0&\text{otherwise.}
+  \end{cases}
+\]
+
+\subsection{Data augmentation}
+
+Very few images.
+
+Augmentation is essential for invariance and robustness.
+
+Microscopic images have a lot of variations!
+
+Shift and rotation invariance.
+
+Deformations
+.
+Gray value variations.
+
+\subsection{Experiments}
+Neuronal structures in electron microscope.
+
+30 training images.
+
+Evaluation: warping, rand, pixel error
+
+Better results than sliding-window CNN.
+
+Cell segmentation in light microscopic images.
+
+Cell segmentation in light micrscopic images.
+
+35 training images. Average IOU of 92\% (much better than the next best 83\%.
+
+Units outperform traditional methods. They are easy to extend. Need very few
+training images, and have a very reasonable training time.
+
 
 \subsection{What is their primary result?}
 

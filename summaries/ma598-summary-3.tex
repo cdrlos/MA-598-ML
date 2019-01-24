@@ -1,4 +1,34 @@
-\section{}
+\section{Deep Residual Learning for Image Recognition}
+% This was actually talk four
+
+\subsection{Introduction}
+Deep nerual networks have become better at classification tasks with increasingc
+number of layers.
+
+Is getting better as easy as adding more layers?
+
+No. Why? Overfitting, exploding/vanishing gradient, and degradation.
+
+\subsection{Constructed network thought experiment}
+
+Let $S_1$ be a shallow neural network that maps inputs.
+
+Hypothesis: If instead we use a block which mimics the identity map, then the
+residual is easy to train.
+
+Let $H(x)=\calF(x)+x$. Then the output of the residual block is $\sigma(H(x))$
+and
+\begin{align*}
+  \sigma(H(x)) &= \sigma(\calF(x)+x)\\
+               &=\sigma(W_2\sigma(W_1x)+x)\\
+               &=\sigma(x)=x,
+\end{align*}
+when $W_2=0$$.
+
+More generally
+\[
+  H(x)=\calF(x)+W_sx.
+\]
 
 \subsection{What is their primary result?}
 
