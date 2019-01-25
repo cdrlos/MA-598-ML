@@ -1,50 +1,153 @@
-\section{Deep Residual Learning for Image Recognition}
-% This was actually talk four
+\section{U-Net: Convolutional Networks for Biomedical Image Segmentation}
 
-\subsection{Introduction}
-Deep nerual networks have become better at classification tasks with increasingc
-number of layers.
+\subsection*{What is their primary result?}
+This paper introduces a novel network architecture and training strategy that
+relies on data augmentation of a starting set of annotated training samples.
 
-Is getting better as easy as adding more layers?
+\subsection*{Why is this important?}
+The paper shows that such a network is capable of outperforming the prior best
+method---a sliding-window CNN developed by Ciresan et al.---as well as
+significantly lowering the time required to train the network, and achieves
+better segmentation.
 
-No. Why? Overfitting, exploding/vanishing gradient, and degradation.
+\subsection*{What are their key ideas?}
+The architecture developed by the writers improves on the sliding-window CNN by
+extending a fully convolutional. The way in which it is extended is further
+explained in the architecture section. The network uses very little training
+data by augmenting the samples through random elastic deformations. This is
+important in biomedical segmentation since such deformations are the most common
+variation in tissue.
 
-\subsection{Constructed network thought experiment}
+% \subsection*{What are the limitations, either in performance or applicability?}
 
-Let $S_1$ be a shallow neural network that maps inputs.
+% \subsection*{What might be an interesting next step based on this work?}
 
-Hypothesis: If instead we use a block which mimics the identity map, then the
-residual is easy to train.
+\subsection*{What's the architecture?}
+The network architecture consists of a contracting path and expansive path. The
+contracting path consists of the repeated application of two $3$-by-$3$
+convolutions followed by a ReLU and a $2$-by-$2$ max pooling operation with
+stride $2$ for downsampling. At each downsampling path, the number of feature
+channels is doubled.
 
-Let $H(x)=\calF(x)+x$. Then the output of the residual block is $\sigma(H(x))$
-and
-\begin{align*}
-  \sigma(H(x)) &= \sigma(\calF(x)+x)\\
-               &=\sigma(W_2\sigma(W_1x)+x)\\
-               &=\sigma(x)=x,
-\end{align*}
-when $W_2=0$$.
+The expansive path consists of an upsampling of the feature map followed by a
+$2$-by-$2$ upconvolution that halves the number of feature channels, a
+concatenation with the cropped feature map from the contracting path, and two
+$3$-by-$3$ convolutions, each followed by a ReLU.
 
-More generally
-\[
-  H(x)=\calF(x)+W_sx.
-\]
+\subsection*{How did they train and evaluate it?}
+The network is trained by feeding it the input images and their corresponding
+segmentation maps with a stochastic gradient descent implementation of Caffe.
 
-\subsection{What is their primary result?}
+More interesting is the data augmentation that is part of the training. The
+initial data is augmented by through random elastic deformations and gray value
+variations. This augmentation teaches the network the desired invariance and
+robustness required of it. The deformations are generated using random
+displacement vectors on a coarse $3$-by-$3$ grid. The vectors themselves are
+sampled from a Gaussian with a $10$ pixel standard deviation
 
-\subsection{Why is this important?}
+% \subsection*{Did they implement something?}
 
-\subsection{What are their key ideas?}
+% \subsection*{Introductionss}
+% CNNs have been performing very well
 
-\subsection{What are the limitations, either in performance or applicability?}
+% There are hurdles in some domains
 
-\subsection{What might be an interesting next step based on this work?}
+% Biomedical image processing needs localization segmentation
 
-\subsection{What's the architecture?}
+% Hard to get lots of data
 
-\subsection{How did they train and evaluate it?}
+% Hard to distinguish neighboriing cells
 
-\subsection{Did they implement something?}
+% \subsection*{Past}
+
+% Training in sliding window setup label for each pixel plus patch
+
+% Pros: localization, more training samples
+
+% Cons: slow, overlapping patches (which are inefficient)
+
+% Tradeoff: localization accurasy vs context
+
+% Large patches implies less localization, and smaller paches imply less context.
+
+% \subsection*{U-Net}
+
+% A unet is a fully convolutional network. works well with very few images to
+% train. It has better segmentation. The key ideas: starts with a set of
+% contraction layers which caper the semantic/contextual information. Expansion
+% layers which recover spatial information (use upsamlping to increase output
+% resolution).
+
+% Overlap tile strategy: Arbitrarily large images, not limite by GPU size.
+
+
+% They also suggest ...
+
+% \subsection*{Training}
+% Input images and corresponding segmentation maps are used for training.
+
+% Uses a stochastic gradient descent.
+
+% Energy function: pixel-wise softmax of feature map with cross entropy loss.
+
+% The pixel wise softmax equation isomorphic softmax 
+% \[
+%   p_k(\bfx)=\exp(a_k(\bfx))/\parens[\bigg]{\sum_{k'=1}^K\exp(a_{k'}(\bfx))}
+% \]
+
+% $K=2$
+
+% $\bfx$ pixel position in an image.
+% $a_k(\bfx)$ output in feature channel $k$ at pixel $\bfx$
+
+% $p_k(\bfx)\approx 1$ for the channel with maximum $a_k(\bfx)$ value.
+% $p_k(\bfx)\approx 0$ for all other $k$.
+
+% Weighted loss
+% \[
+%   E=-\sum_{\bfx\in\Omega}w(\bfx)\log(p_{l(\bfx)(\bfx)})
+% \]
+% $y=l(\bfx)$ ground truth at pixel $\bfx$ (background vs foreground).
+
+% So
+% \[
+%   p_y(\bfx)=\begin{cases}
+%     1&\text{if corrected prediction,}\\
+%     0&\text{otherwise.}
+%   \end{cases}
+% \]
+
+% \subsection*{Data augmentation}
+
+% Very few images.
+
+% Augmentation is essential for invariance and robustness.
+
+% Microscopic images have a lot of variations!
+
+% Shift and rotation invariance.
+
+% Deformations
+% .
+% Gray value variations.
+
+% \subsection*{Experiments}
+% Neuronal structures in electron microscope.
+
+% 30 training images.
+
+% Evaluation: warping, rand, pixel error
+
+% Better results than sliding-window CNN.
+
+% Cell segmentation in light microscopic images.
+
+% Cell segmentation in light micrscopic images.
+
+% 35 training images. Average IOU of 92\% (much better than the next best 83\%.
+
+% Units outperform traditional methods. They are easy to extend. Need very few
+% training images, and have a very reasonable training time.
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"

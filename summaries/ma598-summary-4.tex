@@ -1,123 +1,53 @@
-\section{U-Net: Convolutional Networks for Biomedical Image Segmentation}
+\section{Deep Residual Learning for Image Recognition}
+\subsection*{What is their primary result?}
+The authors present a residual learning framework whose purpose is to ease the
+training of deep networks. 
 
-\subsection{Introductionss}
-CNNs have been performing very well
+\subsection*{Why is this important?}
 
-There are hurdles in some domains
+\subsection*{What are their key ideas?}
 
-Biomedical image processing needs localization segmentation
+\subsection*{What are the limitations, either in performance or applicability?}
 
-Hard to get lots of data
+\subsection*{What might be an interesting next step based on this work?}
 
-Hard to distinguish neighboriing cells
+\subsection*{What's the architecture?}
 
-\subsection{Past}
+\subsection*{How did they train and evaluate it?}
 
-Training in sliding window setup label for each pixel plus patch
-
-Pros: localization, more training samples
-
-Cons: slow, overlapping patches (which are inefficient)
-
-Tradeoff: localization accurasy vs context
-
-Large patches implies less localization, and smaller paches imply less context.
-
-\subsection{U-Net}
-
-A unet is a fully convolutional network. works well with very few images to
-train. It has better segmentation. The key ideas: starts with a set of
-contraction layers which caper the semantic/contextual information. Expansion
-layers which recover spatial information (use upsamlping to increase output
-resolution).
-
-Overlap tile strategy: Arbitrarily large images, not limite by GPU size.
+\subsection*{Did they implement something?}
 
 
-They also suggest ...
+% This was actually talk four
 
-\subsection{Training}
-Input images and corresponding segmentation maps are used for training.
+% \subsection*{Introduction}
+% Deep nerual networks have become better at classification tasks with increasingc
+% number of layers.
 
-Uses a stochastic gradient descent.
+% Is getting better as easy as adding more layers?
 
-Energy function: pixel-wise softmax of feature map with cross entropy loss.
+% No. Why? Overfitting, exploding/vanishing gradient, and degradation.
 
-The pixel wise softmax equation isomorphic softmax 
-\[
-  p_k(\bfx)=\exp(a_k(\bfx))/\parens[\bigg]{\sum_{k'=1}^K\exp(a_{k'}(\bfx))}
-\]
+% \subsection*{Constructed network thought experiment}
 
-$K=2$
+% Let $S_1$ be a shallow neural network that maps inputs.
 
-$\bfx$ pixel position in an image.
-$a_k(\bfx)$ output in feature channel $k$ at pixel $\bfx$
+% Hypothesis: If instead we use a block which mimics the identity map, then the
+% residual is easy to train.
 
-$p_k(\bfx)\approx 1$ for the channel with maximum $a_k(\bfx)$ value.
-$p_k(\bfx)\approx 0$ for all other $k$.
+% Let $H(x)=\calF(x)+x$. Then the output of the residual block is $\sigma(H(x))$
+% and
+% \begin{align*}
+%   \sigma(H(x)) &= \sigma(\calF(x)+x)\\
+%                &=\sigma(W_2\sigma(W_1x)+x)\\
+%                &=\sigma(x)=x,
+% \end{align*}
+% when $W_2=0$$.
 
-Weighted loss
-\[
-  E=-\sum_{\bfx\in\Omega}w(\bfx)\log(p_{l(\bfx)(\bfx)})
-\]
-$y=l(\bfx)$ ground truth at pixel $\bfx$ (background vs foreground).
-
-So
-\[
-  p_y(\bfx)=\begin{cases}
-    1&\text{if corrected prediction,}\\
-    0&\text{otherwise.}
-  \end{cases}
-\]
-
-\subsection{Data augmentation}
-
-Very few images.
-
-Augmentation is essential for invariance and robustness.
-
-Microscopic images have a lot of variations!
-
-Shift and rotation invariance.
-
-Deformations
-.
-Gray value variations.
-
-\subsection{Experiments}
-Neuronal structures in electron microscope.
-
-30 training images.
-
-Evaluation: warping, rand, pixel error
-
-Better results than sliding-window CNN.
-
-Cell segmentation in light microscopic images.
-
-Cell segmentation in light micrscopic images.
-
-35 training images. Average IOU of 92\% (much better than the next best 83\%.
-
-Units outperform traditional methods. They are easy to extend. Need very few
-training images, and have a very reasonable training time.
-
-
-\subsection{What is their primary result?}
-
-\subsection{Why is this important?}
-
-\subsection{What are their key ideas?}
-
-\subsection{What are the limitations, either in performance or applicability?}
-
-\subsection{What might be an interesting next step based on this work?}
-
-\subsection{What's the architecture?}
-
-\subsection{How did they train and evaluate it?}
-
-\subsection{Did they implement something?}
+% More generally
+% \[
+%   H(x)=\calF(x)+W_sx.
+% \]
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
