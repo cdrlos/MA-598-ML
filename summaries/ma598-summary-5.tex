@@ -7,37 +7,41 @@ a deep network as a binary tree) and shows that although both the shallow and
 deep neural networks are capable of achieving the same degree of accuracy the
 number of parameters, VC-dimension, and fat-shattering dimension are much
 smaller for the deep neural network.
-%The paper presents some results on how many parameters are necessary to approximate a function in some smoothness space by means of neural networks.
 \\\\
-\textbf{\large Why is this important?}
-The paper is a worthwhile crack at explaining why deep neural networks work better than shallow networks in practice.
+\textbf{\large Why is this important?} The paper attempts to explain why deep
+neural networks, in general, perform better than shallow networks.
 \\\\
-\textbf{\large What are their key ideas?}
-Universality Theorem--if the activation function is analytic, but not polynomial
-anywhere. (Note that the usual ReLu, pReLu, etc., activation functions fail
-this), then any function that has $r$-continuous partial derivatives can be
-approximated with error $\rmO(n^{-r/d})$  by a sufficiently deep network. The
-authors prove that this is the best estimate that can be made given the set of
-assumptions.
+\textbf{\large What are their key ideas?} Their first result is the following:
+If the activation function is smooth and not a polynomial anywhere, then any
+function $f$ in the Sobolev space $W^{r,p}(\R^d)$ (the author uses unorthodox
+notation for this) can be approximated with error $\rmO(n^{-r/d})$ by a deep
+neural network.
 
-Gaussian networks --- the authors prove that if there's an approximating neural
-network with a Gaussian function that achieves the above approximation for a
-function, then the function has that many partial derivatives. 
+Their second collection of results involve Gaussian neural networks and is a bit
+more mathematically involved. In a nutshell, the authors show that a
+sufficiently deep Gaussian neural network achieves some stated degree of
+accuracy (see the paper to determine how the accuracy is being tested) if and
+only if the function being approximated is in some smoothness space (the
+smoothness space in question is not traditionally a Sobolev space; see the paper
+for the details).
+
+Their last result is shows that the VC-dimension can be bounded, by their
+previous results. They also reference the work of Anthony---Bartlett, who show
+that the fat-shattering dimension is bounded above by the VC-dimension.
 \\\\
 \textbf{\large What are the limitations, either in performance or
-  applicability?} The result requires that the function we wish to approximate
-live in a smoothness space. There are more valuable smoothness spaces than the
-ones the author uses, so this work can be considered preliminary. 
+  applicability?} Most of the results in this paper require that the function
+the neural network is approximating be in some smoothness space.
 \\\\
-\textbf{\large What might be an interesting next step based on this
-  work?} The work should be expanded to consider different function spaces.
-\\\\
-\textbf{\large What's the architecture?}
-\\\\
-\textbf{\large How did they train and evaluate it?}
-\\\\
-\textbf{\large Did they implement something?}
-\\\\
+% \textbf{\large What might be an interesting next step based on this work?} The
+% work should be expanded to consider different function spaces.
+% \\\\
+% \textbf{\large What's the architecture?}
+% \\\\
+% \textbf{\large How did they train and evaluate it?}
+% \\\\
+% \textbf{\large Did they implement something?}
+% \\\\
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"

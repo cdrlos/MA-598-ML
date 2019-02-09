@@ -1,34 +1,47 @@
-%%\section{}
-
-\noindent \textbf{\large Title of paper: Deep Convolutional Framelets: A General Deep Learning Framework For Inverse}
+\noindent \textbf{\large Title of paper:} Deep Convolutional Framelets: A
+General Deep Learning Framework For Inverse
 \\
 
-\noindent\textbf{\large What is their primary result?} The authors present a new
-framework for studying neural networks (especially convolutional neural
-networks), develop a set of conditions that make neural networks work well,
-explain how the size of a convolutional neural network would grow if it were to
-maintain the frame conditions, and provide preliminary experimental results with
-a new architecture with a design based on their framework. 
+\noindent\textbf{\large What is their primary result?} % The authors present a new
+% framework for studying neural networks (especially convolutional neural
+% networks), develop a set of conditions that make neural networks work well,
+% explain how the size of a convolutional neural network would grow if it were
+% to maintain the frame conditions, and provide preliminary experimental results
+% with a new architecture with a design based on their framework.
+% The authors set out to answer some of the following questions:
+% \begin{enumerate}[1.]
+% \item What is the role of the filter channels in convolutional layers?
+% \item Why do some networks need fully connected layers whereas others do not?
+% \item What is the role of the nonlinearity such as ReLU?
+% \item Why do we need pooling and unpooling in some architectures?
+% \item What is the role of a bypass connection or residual network?
+% \item How many layers do we need?
+% \end{enumerate}
+The authors set out to explain why neural networks work so well where classical
+signal processing methods fail. They present a new framework for studying
+convolutional neural networks
 \\
 
-\noindent\textbf{\large Why is this important?} This is probably the most
-promising direction in the study of determining why neural networks work; it is
-a very deep synthesis of classical methods of $X$-let/compressive sensing based
-image processing and modern methods of AI based image processing.
+\noindent\textbf{\large Why is this important?} % This is probably the most
+% promising direction in the study of determining why neural networks work; it
+% is a very deep synthesis of classical methods of $X$-let/compressive sensing
+% based image processing and modern methods of AI based image processing.
+This is a promising direction in the study of determining why neural networks
+work. It is a synthesis of both classical and modern AI methods to image processing.
 \\
 
-\noindent\textbf{\large What are their key ideas?}
-We can represent circular convolution by Henkel matrices, which are low rank.
+% \noindent\textbf{\large What are their key ideas?}
+% We can represent circular convolution by Henkel matrices, which are low rank.
 
-Because CNNs rely on convolutional filters, we can study their value by
-considering Henkel matrices.
+% Because CNNs rely on convolutional filters, we can study their value by
+% considering Henkel matrices.
 
-Moreover, if our activation function is the ReLu, we can sort of ignore the
-technicalities involved with the activation function --- our network can learn a
-linear function, and this is readily proved by pointing out that the negative
-filter can be learned at any layer, and the negative filter can be subtracted
-from the positive filter. 
-\\
+% Moreover, if our activation function is the ReLu, we can sort of ignore the
+% technicalities involved with the activation function --- our network can learn a
+% linear function, and this is readily proved by pointing out that the negative
+% filter can be learned at any layer, and the negative filter can be subtracted
+% from the positive filter. 
+% \\
 
 \noindent\textbf{\large What are the limitations, either in performance or applicability?}
 \\
