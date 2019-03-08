@@ -1,7 +1,11 @@
 \noindent \textbf{\large Title of paper:} Audio Adversarial Examples: Targeted
 Attacks on Speech Attacks.
 
-\noindent\textbf{\large What is their primary result?} Scare you into action!
+\noindent\textbf{\large What is their primary result?} The primary result of the
+paper is to demonstrate that the use of neural networks in audio recognition
+tasks is vulnerable to adversarial attacks; that is, attacks where the main
+objective of the attacker is to make the neural network classify an instance $x$
+similar to a natural instance $y$ as any target $t$ chosen by the attacker.
 
 \noindent\textbf{\large Why is this important?}
 
@@ -18,37 +22,37 @@ Attacks on Speech Attacks.
 \noindent\textbf{\large Did they implement something?}
 
 
-Automatic transcription is used all over the planet now using neural nets to
-figure out what audio clips are saying in words.
+% Automatic transcription is used all over the planet now using neural nets to
+% figure out what audio clips are saying in words.
 
-Mozilla Deep Speech puts the shit into a Mel-Frequency Cepstrum.
+% Mozilla Deep Speech puts the shit into a Mel-Frequency Cepstrum.
 
-Given audio $x\in X$ and target $t$, authors conpute $\delta$ such that.
+% Given audio $x\in X$ and target $t$, authors conpute $\delta$ such that.
 
-The distortion induced by some perturbation $\delta$ is quatified by
-\[
-  dB_x(\delta)=dB(\delta)-dB(x),\quad \text{with}\quad
-  dB(x)=max_i [20\log_{10}(\abs{x_i})]
-\]
+% The distortion induced by some perturbation $\delta$ is quatified by
+% \[
+%   dB_x(\delta)=dB(\delta)-dB(x),\quad \text{with}\quad
+%   dB(x)=max_i [20\log_{10}(\abs{x_i})]
+% \]
 
-One then solves the corresponding optimization problem with the two feasibility
-constraints.
+% One then solves the corresponding optimization problem with the two feasibility
+% constraints.
 
-One then sloves the corresponding optimization problem with the two feasibility
-constraints.
+% One then sloves the corresponding optimization problem with the two feasibility
+% constraints.
 
-minimize $\delta$ over $dB_x(\delta)$ subject to $C(x+\delta)=t$,
-$x+\delta\in[-M,M]$. The authors test this on $100$ instances of Mozilla Common
-Voice dataset and target $10$ distinct incorrect transcriptions, chosen at
-random so that the transcription is incorrect, it is theoretically possible to
-reach ...
+% minimize $\delta$ over $dB_x(\delta)$ subject to $C(x+\delta)=t$,
+% $x+\delta\in[-M,M]$. The authors test this on $100$ instances of Mozilla Common
+% Voice dataset and target $10$ distinct incorrect transcriptions, chosen at
+% random so that the transcription is incorrect, it is theoretically possible to
+% reach ...
 
-The constraint $C(x+\delta)=t$ is nonlinear, which makes the original
-optimization problem hard. (How could
+% The constraint $C(x+\delta)=t$ is nonlinear, which makes the original
+% optimization problem hard. (How could
 
-Some notation: single input frame $\calX$ range of single frame $\calY$,
-$f\colon\calX^N\to[0,1]^{N\abs\calY}$. Probability frame $x_i\in\calX$ has label
-$j$.
+% Some notation: single input frame $\calX$ range of single frame $\calY$,
+% $f\colon\calX^N\to[0,1]^{N\abs\calY}$. Probability frame $x_i\in\calX$ has label
+% $j$.
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
