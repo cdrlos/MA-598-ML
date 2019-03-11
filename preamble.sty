@@ -160,25 +160,25 @@ numbered=no,
 \@ifpackageloaded{xcolor}
 {\PassOptionsToPackage{dvipsnames}{xcolor}}
 {\RequirePackage[dvipsnames]{xcolor}}
-\definecolor{myblue}{RGB}{18,76,178}
-\definecolor{myorange}{RGB}{255,36,0}
-\definecolor{mygreen}{RGB}{151,204,20}
+\definecolor{myred}{RGB}{223,63,0}
+\definecolor{myblue}{RGB}{4,83,144}
+\definecolor{mygreen}{RGB}{90,199,0}
 
 %% Hyperref 
 \@ifpackageloaded{hyperref}{
   \PassOptionsToPackage{pdfencoding=auto,
                         colorlinks=true,
-                        urlcolor=myblue!80!black,
-                        citecolor=mygreen!80!black,
-                        linkcolor=myorange!80!black,
+                        urlcolor=myblue,
+                        citecolor=mygreen,
+                        linkcolor=myred,
                         plainpages=false,
                         pdfpagelabels,
                         bookmarksnumbered}{hyperref}}
   {\RequirePackage[pdfencoding=auto,
                    colorlinks=true,
-                   urlcolor=myblue!80!black,
-                   citecolor=mygreen!80!black,
-                   linkcolor=myorange!80!black,
+                   urlcolor=myblue,
+                   citecolor=mygreen,
+                   linkcolor=myred,
                    plainpages=false,
                    pdfpagelabels,
                    bookmarksnumbered]{hyperref}}
