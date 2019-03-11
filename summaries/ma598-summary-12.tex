@@ -3,10 +3,11 @@ Attacks on Speech Attacks'' by Carlini and Wagner.
 
 \noindent\textbf{What is their primary result?} The primary result of the
 paper is to demonstrate that the use of neural networks in audio/speech
-recognition tasks is vulnerable to adversarial attacks; that is, attacks where
-the main objective of the attacker is to make the neural network classify an
+recognition tasks is vulnerable to adversarial attacks; i.e., attacks where the
+main objective of the adversary is to make the neural network classify an
 instance $x$ similar to a natural instance $y$ as any target $t$ chosen by the
-attacker.
+adversary. In fact, the authors are able to construct a distortion $\delta$ such
+that $x+\delta$ can be recognized as \emph{any} target $t$!
 
 \noindent\textbf{Why is this important?} This is important because the use of
 neural networks in speech recognition tasks is more and more relevant to our
@@ -19,17 +20,17 @@ target phrase $t$, solve
 \[
   \begin{aligned}
     \text{minimize }
-    &\operatorname{dB}_x(\delta),\\
+    &\dB_x(\delta),\\
     \text{such that }&C(x+\delta)=t\quad \text{for } x+\delta\in [-M,M],
   \end{aligned}
 \]
-where $\operatorname{dB}_x$ is a measure (in decibels) of the magnitude of the
+where $\dB_x$ is a measure (in decibels) of the magnitude of the
 distortion $\delta$ relative to $x$, and $M$ is the maximum intensity of the
 sound. Due to the nonlinearity of the problem, traditional Gradient Descent
 techniques do not work on this problem. The authors resolve this by minimizing
 the following reformulation:
 \[
-  \text{minimize }\operatorname{dB}_x(\delta)+cl(x+\delta,t),
+  \text{minimize }\dB_x(\delta)+cl(x+\delta,t),
 \]
 where $l$ is the loss function, and it is constructed such that $l(x',t)\leq 0$
 if, and only if, $C(x')=t$. The authors use the CTC loss as the loss function
@@ -37,25 +38,38 @@ and further formulate an optimization problem to address the oscillatory nature
 of the previous optimization problem; i.e., they solve
 \begin{align*}
   \text{minimize }  &\abs{\delta}_2^2+cl(x+\delta,t),\\
-  \text{such that}&\operatorname{dB}_x(\delta)\leq\tau
+  \text{such that}&\dB_x(\delta)\leq\tau
 \end{align*}
 for sufficiently large $\tau$.
 
 \noindent\textbf{What are the limitations, either in performance or
-  applicability?} 
+  applicability?} One unavoidable limitation of the study is that it is done in
+a whitebox scenario. That is, a scenario in which the adversary has full
+knowledge of the inner workings of the neural network. Needless to say, the work
+may not extend to a blackbox scenario as they were able to do for their previous
+work on image recognition tasks.
+
+Also, as discussed above, the typical loss function requires many workarounds to
 
 \noindent\textbf{What might be an interesting next step based on this work?} The
-authors based their adversarial attacks on a model where the attacker knows the
+authors based their adversarial attacks on a model where the adversary knows the
 inner workings of the neural network, a so-called ``whitebox'' setting. It would
-be interesting to extend the work to a blackbox setting, where the attacker has
+be interesting to extend the work to a blackbox setting, where the adversary has
 no knowledge of the inner workings of the network.
 
 % \noindent\textbf{What's the architecture?}
 
 \noindent\textbf{How did they train and evaluate it?} The authors test their
-attacks on Mozilla's implementation of DeepSpeech.
+attacks on Mozilla's implementation of DeepSpeech. They constructed targeted
+adversarial examples for the first $100$ test instances of the Mozilla Common
+Voice dataset. For each sample, they target $10$ different incorrect
+transcriptions chosen at random and are able to generate targeted adversarial
+examples with a $100\%$ success rate with a mean perturbation of $-31\text{
+  dB}$. Generating such an adversarial example requires approximately an hour of
+computation time on commodity hardware; but they can generate $10$ such samples
+simultaneously on a GPU.
 
-\noindent\textbf{Did they implement something?}
+% \noindent\textbf{Did they implement something?}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
