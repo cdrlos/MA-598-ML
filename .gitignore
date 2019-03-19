@@ -1,18 +1,16 @@
 # Created by https://www.gitignore.io/api/tex
 
 # Folders
-code/deep-learning-with-python-notebooks-master
 
 # ZIP files
 *.zip
-
-# Output file
-*.asy
 
 ## Emacs-related files
 *.el
 *[#]*[#]
 *[#]*
+auto/
+*/auto/
 
 ### TeX ###
 ## Core latex/pdflatex auxiliary files:
