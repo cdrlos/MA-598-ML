@@ -1,5 +1,8 @@
 # Created by https://www.gitignore.io/api/tex
 
+# Document
+MA598-DL-HW.pdf
+
 # Folders
 
 # ZIP files
@@ -11,6 +14,7 @@
 *[#]*
 auto/
 */auto/
+_region_.tex
 
 ### TeX ###
 ## Core latex/pdflatex auxiliary files:
