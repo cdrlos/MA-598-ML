@@ -1,18 +1,20 @@
 # Created by https://www.gitignore.io/api/tex
 
+# Document
+MA598-DL-HW.pdf
+
 # Folders
-code/deep-learning-with-python-notebooks-master
 
 # ZIP files
 *.zip
-
-# Output file
-*.asy
 
 ## Emacs-related files
 *.el
 *[#]*[#]
 *[#]*
+auto/
+*/auto/
+_region_.tex
 
 ### TeX ###
 ## Core latex/pdflatex auxiliary files:
