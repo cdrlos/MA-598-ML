@@ -1,20 +1,62 @@
-\noindent \textbf{\large Title of paper: }
+\noindent \textbf{Title of paper:} ``Improved Techniques for Training GANs'' by
+Salimans et al.
 
-\noindent\textbf{\large What is their primary result?}
+\noindent\textbf{What is their primary result?} The authors propose a variety of
+`new' architectural features and training procedures for generative adversarial
+networks (GANs) inspired by Game Theory. They then proceed to apply these to
+semi-supervised learning and the generation of visually realistic images.
 
-\noindent\textbf{\large Why is this important?}
+\noindent\textbf{Why is this important?} As was remarked in the last paragraph,
+one of the main motivations for studying GANs is their effectiveness in creating
+images which humans find realistic. However, more interesting is the theoretical
+aspects of using GANs for semi-supervised learning applications as is noted in
+work of Sutskever--Jozefowicz--Gregor and Springenberg on unsupervised and
+semi-supervised networks.
 
-\noindent\textbf{\large What are their key ideas?}
+\noindent\textbf{What are their key ideas?} This paper introduces several
+techniques to solve a difficult nonconvex optimization \emph{game} with
+high-dimensional parameters. In such a situation, traditional methods such as
+that of (stochastic) gradient descent fail to converge. The authors introduce
+several techniques to `encourage convergence.'
 
-\noindent\textbf{\large What are the limitations, either in performance or applicability?}
+In the applications discussed in the paper, some or all of the following
+techniques are employed.
 
-\noindent\textbf{\large What might be an interesting next step based on this work?}
+The first of these is \emph{feature matching} which, roughly speaking, prevents
+the GAN from overtraining on a given discriminator by specifying a new objective
+for the generator.
 
-\noindent\textbf{\large What's the architecture?}
+The second of these, \emph{minibatch discrimination}, addresses the situation
+where a GAN will collapse to a parameter setting where it emits the same point.
+When such a collapse is imminent, minibatch discrimination tells the outputs of
+the generator to become more dissimilar to each other.
 
-\noindent\textbf{\large How did they train and evaluate it?}
+The third is \emph{historical averaging}, whereby each player's loss function
+includes the term $\Abs{\theta-t^{-1}\sum_{i=1}^t\theta_i}^2$ for $\theta_i$ the
+value of parameters at a past time $i$. This is inspired by the success of the
+Fictitious Play Algorithm at finding equilibria in other kinds of games.
 
-\noindent\textbf{\large Did they implement something?}
+The last two techniques are \emph{one-sided label smoothing} and \emph{virtual
+  batch normalization}.
+
+\noindent\textbf{What are the limitations, either in performance or
+  applicability?} Virtual batch normalization is an expensive procedure since it
+requires each running forward propagation on two minibatches of data.
+
+\noindent\textbf{What might be an interesting next step based on this work?}
+
+\noindent\textbf{What's the architecture?} They use a nine-layer deep
+convolutional network with dropout and weight normalization for the
+discriminator and a four-layer deep CNN with batch normalization for the
+generator.
+
+\noindent\textbf{How did they train and evaluate it?} They test their
+semi-supervised learning task on MNIST, CIFAR-10, and SVHN. On the MNIST
+dataset, annotators were able to distinguish GAN-generated samples from true
+samples in $52.4\%$ of cases (only slightly better than randomly guessing).
+
+
+\noindent\textbf{Did they implement something?}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
