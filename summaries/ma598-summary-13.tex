@@ -44,6 +44,11 @@ The last two techniques are \emph{one-sided label smoothing} and \emph{virtual
 requires each running forward propagation on two minibatches of data.
 
 \noindent\textbf{What might be an interesting next step based on this work?}
+The authors use their techniques to make GANs learn to generate objects
+resembling animals. However, these animals lack any recognizable features of
+animals, such as heads, limbs, and appear rather as a mess of fur. It would be
+interesting to see in what way the model needs to be altered to generate
+recognizable anatomy in this application.
 
 \noindent\textbf{What's the architecture?} They use a nine-layer deep
 convolutional network with dropout and weight normalization for the
@@ -51,12 +56,16 @@ discriminator and a four-layer deep CNN with batch normalization for the
 generator.
 
 \noindent\textbf{How did they train and evaluate it?} They test their
-semi-supervised learning task on MNIST, CIFAR-10, and SVHN. On the MNIST
-dataset, annotators were able to distinguish GAN-generated samples from true
-samples in $52.4\%$ of cases (only slightly better than randomly guessing).
+semi-supervised learning task on MNIST, CIFAR-10, and SVHN by generating samples
+very similar to those found in the datasets and asking MTurk annotator to
+distinguish the real from fake data. On the MNIST dataset, annotators were able
+to distinguish GAN-generated samples from true samples in $52.4\%$ of cases
+(only slightly better than randomly guessing). For the CIFAR-10, annotators
+correctly categorized $78.7\%$ of all images.
 
 
-\noindent\textbf{Did they implement something?}
+\noindent\textbf{Did they implement something?} Several of the networks in this
+paper are available at \url{https://github.com/openai/improved_gan}. 
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
