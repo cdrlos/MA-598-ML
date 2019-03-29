@@ -1,20 +1,54 @@
 \noindent \textbf{Title of paper:} ``Mastering Chess and Shogi by Self-Play with a General Reinforcement Learning Algorithm'' by Silver et.\ al.
 
-\noindent\textbf{What is their primary result?}
+\noindent\textbf{What is their primary result?} DeepMind has employed a variety
+of distinct approaches in order to get machines to achieve superhuman levels of
+performance in the games of chess, shōgi, and Go. The authors generalize the
+distinct approaches to a single `AlphaZero algorithm.'
 
-\noindent\textbf{Why is this important?}
+\noindent\textbf{Why is this important?} Previous approaches to the problem were
+based on sophisticated search techniques handcrafted and refined by human
+experts. A machine learning approach, AlphaGo, was recently applied to the game
+of Go with much success. However, it is difficult to apply the AlphaGo's
+neural network architecture to chess and shōgi because of the asymmetry of their
+rules.
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} The authors generalize the AlphaGo
+Zero algorithm to a more generic AlphaZero algorithm which uses deep neural
+networks and a tabula rasa reinforcement learning algorithm. The neural network
+in AlphaZero takes the board positions $s$ as input and outputs a vector of move
+probabilities $\bfp$ with components $p_a=\Pr(a|s)$ for each action $a$, and a
+scalar value $v$ estimating the expected outcome $z$ from position $s$. The
+network optimizes these values entirely through self-play and uses these to
+guide its search.
 
-\noindent\textbf{What are the limitations, either in performance or applicability?}
+Instead of more traditional alpha-beta search with handcrafted enhancements,
+AlphaZero uses a more general Monte Carlo tree search. Each search consists of a
+series of simulated games and self-play that traverse a tree from root to leaf.
+Each simulation proceeds by selecting in each state $s$ a move $a$ with low
+visit count, high move probability and high value according to the current
+neural network.
+% \noindent\textbf{What are the limitations, either in performance or
+%   applicability?} 
 
-\noindent\textbf{What might be an interesting next step based on this work?}
+\noindent\textbf{What might be an interesting next step based on this work?} An
+interesting next step would be to apply machine learning methods to more
+sophisticated board games.
 
 \noindent\textbf{What's the architecture?}
 
-\noindent\textbf{How did they train and evaluate it?}
+\noindent\textbf{How did they train and evaluate it?} They applied the AlphaZero
+algorithm to chess, shogi, and Go. The training proceeded for $700\,000$ steps
+in mini-batches of size $4\,096$ starting from randomly initialized parameters,
+using $5\,000$ first-generation TPUs to generate self-play games and $64$
+second-generation TPUs to train the neural networks.
 
-\noindent\textbf{Did they implement something?}
+They evaluated the trained instances of AlphaZero against Stockfish, Elmo, and
+the previous version of AlphaGo Zero (trained for $3$ days) in chess, shōgi, and
+Go, respectively. Alpha Zero defeated all opponents, losing zero games to
+Stockfish, eight games to Elmo, and defeating the previous version of AlphaGo
+Zero in all games.
+
+% \noindent\textbf{Did they implement something?}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
