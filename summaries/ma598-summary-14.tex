@@ -1,10 +1,20 @@
 \noindent \textbf{Title of paper:} ``Auto-Encoding Variational Bayes'' by Kingma and Welling. 
 
-\noindent\textbf{What is their primary result?}
+\noindent\textbf{What is their primary result?} The authors introduce a
+variational Bayes approach to solve a probabilistic model whose parameters have
+intractable posterior distributions. The reparametrization of the variational
+lower bound yields a simple differentiable unbiased estimator of the lower bound
+that can be used for efficient approximate posterior inference, and is
+straightforward to optimize using stochastic gradient descent techniques.
 
-\noindent\textbf{Why is this important?}
+\noindent\textbf{Why is this important?} The problem of intractability is common
+in many machine learning applications.
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} The authors introduce a
+`probabilistic encoder' $q_\phi(\bfz|\bfx)$ which, given a datapoint $\bfx$,
+produces a distribution over the possible values of the code $\bfz$ from which
+the datapoint $\bfx$ could have been generated. 
+
 
 \noindent\textbf{What are the limitations, either in performance or applicability?}
 
@@ -15,6 +25,7 @@
 \noindent\textbf{How did they train and evaluate it?}
 
 \noindent\textbf{Did they implement something?}
+
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
