@@ -1,30 +1,56 @@
 \noindent \textbf{Title of paper:} ``Auto-Encoding Variational Bayes'' by Kingma and Welling. 
 
 \noindent\textbf{What is their primary result?} The authors introduce a
-variational Bayes approach to solve a probabilistic model whose parameters have
-intractable posterior distributions. The reparametrization of the variational
-lower bound yields a simple differentiable unbiased estimator of the lower bound
-that can be used for efficient approximate posterior inference, and is
-straightforward to optimize using stochastic gradient descent techniques.
+variational Bayes approach to solve the problem of finding a good (universal)
+approximation to the intractable posterior distributions in many probabilistic
+ML models. The approach yields a suitable estimator which can be optimized using
+standard stochastic gradient descent techniques.
 
 \noindent\textbf{Why is this important?} The problem of intractability is common
 in many machine learning applications.
 
 \noindent\textbf{What are their key ideas?} The authors introduce a
-`probabilistic encoder' $q_\phi(\bfz|\bfx)$ which, given a datapoint $\bfx$,
+`probabilistic encoder' $q_\bfphi(\bfz|\bfx)$ which, given a datapoint $\bfx$,
 produces a distribution over the possible values of the code $\bfz$ from which
-the datapoint $\bfx$ could have been generated. 
+the datapoint $\bfx$ could have been generated. If we consider the marginal
+likelihood, as a sum of the individual likelihood datapoints $\log
+p_{\bftheta}(\bfx^{(i)})$, which are of the form $\log
+p_{\bftheta}(\bfx^{(i)})=D_{\rmK\rmL}(q_{\bfphi}(\bfz|\bfx^{(i)}))+\calL(\bftheta,\bfphi;\bfx^{(i)})$,
+we get a lower bound on the $i$\textsup{th} datapoint by
+\[
+  \log p_{\bftheta}(\bfx^{(i)})\leq\calL(\bftheta,\bfphi;\bfx^{(i)}).
+\]
+In this last equation, the authors optimize $\calL$ (the variational lower
+bound). They do this by a reparametrization trick, wherein they reparametrize
+the random variable associated to $q_{\bfphi}(\bfz|\bfx)$ using a differentiable
+transformation $g_{\bfphi}(\bfepsilon,\bfx)$ and an auxiliary noise variable
+$\bfepsilon$. This technique yields a generic stochastic gradient variational
+Bayes estimator of the form
+\[
+  \tilde \calL(\bftheta,\bfphi;\bfx^{(i)})=\frac 1L\sum_{l=1}^L \log
+  p_{\bftheta}(\bfx^{(i)},\bfz^{(i,l)})-\log q_{\bfphi}(\bfz^{(i,l)}|\bfx^{(i)}).
+\]
+They use this to create an auto-encoding variational Bayes algorithm.
 
+\noindent\textbf{What are the limitations, either in performance or
+  applicability?} The approach does not apply to models with discrete latent
+variables.
 
-\noindent\textbf{What are the limitations, either in performance or applicability?}
+\noindent\textbf{What might be an interesting next step based on this work?} The
+authors mention some possible future directions of this work including: learning
+hierarchical generative architectures with deep neural networks used for
+encoders and decoders, trained jointly with auto-encoding variational Bayes;
+time-series models; applications of stochastic gradient variational Bayes to
+global parameters; and supervised models with latent variables.
 
-\noindent\textbf{What might be an interesting next step based on this work?}
+% \noindent\textbf{What's the architecture?}
 
-\noindent\textbf{What's the architecture?}
+\noindent\textbf{How did they train and evaluate it?} They trained generative
+models of images from the MNIST and Frey Face datasets using their generative
+model and variational approximation. They compare their AEVB approach to the
+wake-sleep algorithm.
 
-\noindent\textbf{How did they train and evaluate it?}
-
-\noindent\textbf{Did they implement something?}
+% \noindent\textbf{Did they implement something?}
 
 
 %%% Local Variables:
