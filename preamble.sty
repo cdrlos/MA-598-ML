@@ -64,7 +64,11 @@
 \DeclareFieldFormat{extraalpha}{#1}%
 % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
-%% Languages and fonts 
+\RequirePackage{ifxetex}
+\ifxetex
+\RequirePackage{unicode-math}
+\else
+%% Languages and fonts
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
@@ -77,7 +81,7 @@
 \if@sans
 \RequirePackage{esint}
 \RequirePackage{sansmathfonts}
-\fi
+\fi\fi
 
 %% Have the beamer Math punctuation match the sans font of the document 
 \@ifclassloaded{beamer}
