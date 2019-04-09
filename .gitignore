@@ -9,6 +9,7 @@ MA598-DL-HW.pdf
 *.zip
 
 ## Emacs-related files
+*.nfs*
 *.el
 *[#]*[#]
 *[#]*
