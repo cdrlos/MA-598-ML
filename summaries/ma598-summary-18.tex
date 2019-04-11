@@ -1,20 +1,52 @@
-\noindent \textbf{Title of paper:}
+\noindent \textbf{Title of paper:} ``How SGD Selects the Global Minima in
+Over-parameterized Learning: A Dynamical Stability Perspective'' by Wu, Ma, and
+E.
 
-\noindent\textbf{What is their primary result?}
+\noindent\textbf{What is their primary result?} The authors propose a
+dynamical-stability heuristic for analyzing the global minima selection of SGD
+in the setting of over-parameterized learning (e.g., deep learning). Their
+methods predict SGD convergence behavior which seems to correlate well with
+previous empirical studies of the phenomenon.
 
-\noindent\textbf{Why is this important?}
+\noindent\textbf{Why is this important?} Analyzing the selection behavior of SGD
+contributes to our understanding of the algorithm and makes us more confident of
+its applicability.
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} It has been previously observed that
+SGD tends toward selecting \emph{flat minima}. In particular, work of
+Jastrzębski et al.\ suggests that the ratio $\eta/B$ between the learning rate
+and batch size is key to the selection of flat minima by SGD. Moreover, SGD
+exhibits an escape behavior from global minima found by GD and toward minima of
+smaller sharpness, i.e., smaller second derivative.
 
-\noindent\textbf{What are the limitations, either in performance or applicability?}
+The authors introduce a dynamical stability perspective into the problem
+(particularly, the notions of fixed point, linear stability, non-uniformity) and
+prove that the global minimum $x^*$ (fixed point of a stochastic dynamics
+problem) is linearly stable if a certain inequality involving the learning rate
+$\eta$, batch size $B$, etc., is met.
 
-\noindent\textbf{What might be an interesting next step based on this work?}
+% \noindent\textbf{What are the limitations, either in performance or applicability?}
 
-\noindent\textbf{What's the architecture?}
+% \noindent\textbf{What's the architecture?}
 
-\noindent\textbf{How did they train and evaluate it?}
+\noindent\textbf{How did they train and evaluate it?} The authors tested the
+predictions of their method by carrying out two classification experiments: a
+FNN with 898\,510 parameters on FashionMNIST and a VGG with 71\,410 parameters
+on CIFAR10. Their experiments fit quite nicely their predicted behavior.
 
-\noindent\textbf{Did they implement something?}
+As predicted by their methods, GD tends towards the sharpest minima; in fact, in
+both experiments the bound $\leq s/\eta$ (where $s$ is the sharpness) is very
+nearly met. On the other hand, SGD tends to select flatter minima instead of
+sharp minima with low non-uniformity. It is mentioned that as the non-uniformity
+is reduced, the sharpness is reduced, so that there appears to be a strong
+correlation between sharpness and non-uniformity.
+
+\noindent\textbf{What might be an interesting next step based on this work?} In
+their evaluation of their methods, the authors noticed a strong correlation
+between sharpness and non-uniformity. Perhaps there is some theoretical reason
+for this that yet to be explored.
+
+% \noindent\textbf{Did they implement something?}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
