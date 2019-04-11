@@ -1,20 +1,50 @@
-\noindent \textbf{\large Title of paper: }
+\noindent \textbf{Title of paper:} ``Understanding Convolutional Neural
+Networks'' by Mallat.
 
-\noindent\textbf{\large What is their primary result?}
+\noindent\textbf{What is their primary result?}
 
-\noindent\textbf{\large Why is this important?}
+\noindent\textbf{Why is this important?}
 
-\noindent\textbf{\large What are their key ideas?}
+\noindent\textbf{What are their key ideas?}
 
-\noindent\textbf{\large What are the limitations, either in performance or applicability?}
+\noindent\textbf{What are the limitations, either in performance or applicability?}
 
-\noindent\textbf{\large What might be an interesting next step based on this work?}
+\noindent\textbf{What might be an interesting next step based on this work?}
 
-\noindent\textbf{\large What's the architecture?}
+\noindent\textbf{What's the architecture?}
 
-\noindent\textbf{\large How did they train and evaluate it?}
+\noindent\textbf{How did they train and evaluate it?}
 
-\noindent\textbf{\large Did they implement something?}
+\noindent\textbf{Did they implement something?}
+
+We want to do dimensionality reduction. Call tit the feature function. Actually
+It's kinda rike changer variabre. To make it, then make rinear projection. It's
+ike change of voariabrs.
+
+Reduce dimensionality.
+
+Discriminative change of variables $\Phi(x)$. $\Phi(x)\neq\Phi(x')$ if $f(x)\neq
+f(x')$ then there exists a $\tilde f$ with $f(x)=\tilde(\Phi(x))$. If $\tilde f$
+i Lipschitz, $\abs{\tilde f(z)-\tilde f(z')}\leq C\Abs{z-z'}$, $z=\Phi(x)$ if
+and only if $\abs{f(x)-f(x')}\leq C\Abs{\Phi(x)-\Phi(x')}$. Discriminative
+$\Abs{\Phi(x)-\Phi(x')}\geq C^{-1}\abs{f(x)-f(x')}$. For $x\in\Omega$, if
+$\Phi(\Omega)$ is bounded and a low dimension $d'$, then $\Abs{f-FM}\leq
+CM^{-1/d'}$. Digit classification $x'(u)=x(u-\tau(u))$. Can do some linearized
+work.
+
+Deep Convolutional Trees. $L_j$ is composed  of convolutions and subsamplings :
+\[
+  x_j(u,k_j)=\rho(x_{j-1}(\blk,k)\star h_{k_j,k}(u))
+\]
+
+Averaging filter.
+
+Multiscale averaging by cascade of yair averaging.
+
+
+
+
+
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
