@@ -1,50 +1,59 @@
-\noindent \textbf{Title of paper:} ``Understanding Convolutional Neural
-Networks'' by Mallat.
+\noindent \textbf{Title of paper:} ``Understanding Deep Convolutional Networks''
+by Mallat.
 
-\noindent\textbf{What is their primary result?}
+\noindent\textbf{What is their primary result?} The paper introduces a
+mathematical framework to analyze contraction and separation properties of deep
+convolutional networks. 
 
-\noindent\textbf{Why is this important?}
+\noindent\textbf{Why is this important?} We want to understand why convolutional
+networks are so powerful. This paper is an important step in our understanding. 
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} The author introduces several
+important concepts to the analysis of convolutional networks. Key among these
+are the following.
+\begin{itemize}[noitemsep]
+\item In high dimensions, $x$ has a considerable number of parameters; this is a
+  dimensionality curse. To remedy the situation, one might want to introduce a
+  new variable $\Phi(x)$ where $\Phi$ is a contractive operator which reduces
+  the range of variations of $x$, while still separating different values of
+  $f$, i.e., whenever $\Phi(x)\neq\Phi(x')$ whenever $f(x)\neq f(x')$.
+\item Once we have less variability on $x$ a low-dimensional linear projection
+  on $\Phi(x)$ in the direction of a high-dimensional linear space where $f$
+  remains nearly constant reduces the actual dimension of the problem.
+\item What deep neural networks actually do is contract the space and linearize
+  transformations $\Phi$ along which $f$ remains nearly constant. These
+  directions are defined by linear operators which belong to groups of local
+  symmetries.
+\item The author analyzes the problem of linearizing the action of
+  hi-dimensional groups of operators, beginning with the group of translations
+  and diffeomorphisms.
+\item At this point, the author introduces the wavelet transform to deal with
+  the problem of preserving separability while linearizing the diffeomorphisms
+  (i.e., the smooth variable transformations $\Phi$).
+\item General deep networks architectures iterate on linear operators which
+  filter and linearly combine different channels in the network layers. This is
+  followed up by contractive nonlinearities.
+\item The author then analyzes how nonlinear contractions interact with linear
+  operators. For this he introduces simpler architecture which defines a
+  nonlinear scattering transform for which sparsity is necessary for effective
+  image reconstruction.
+\item Finally, the author extends these ideas to multiscale hierarchical
+  convolutional networks. 
+\end{itemize}
 
-\noindent\textbf{What are the limitations, either in performance or applicability?}
+% \noindent\textbf{What are the limitations, either in performance or applicability?}
 
-\noindent\textbf{What might be an interesting next step based on this work?}
+\noindent\textbf{What might be an interesting next step based on this work?} The
+author points out than we need complexity measures, approximation theorems in
+high-dimensional function spaces, and convergence of filter optimization to
+fully understand the mathematics of convolutional networks. Presumably this can
+be a direction of further research on this topic. 
 
-\noindent\textbf{What's the architecture?}
+% \noindent\textbf{What's the architecture?}
 
-\noindent\textbf{How did they train and evaluate it?}
+% \noindent\textbf{How did they train and evaluate it?}
 
-\noindent\textbf{Did they implement something?}
-
-We want to do dimensionality reduction. Call tit the feature function. Actually
-It's kinda rike changer variabre. To make it, then make rinear projection. It's
-ike change of voariabrs.
-
-Reduce dimensionality.
-
-Discriminative change of variables $\Phi(x)$. $\Phi(x)\neq\Phi(x')$ if $f(x)\neq
-f(x')$ then there exists a $\tilde f$ with $f(x)=\tilde(\Phi(x))$. If $\tilde f$
-i Lipschitz, $\abs{\tilde f(z)-\tilde f(z')}\leq C\Abs{z-z'}$, $z=\Phi(x)$ if
-and only if $\abs{f(x)-f(x')}\leq C\Abs{\Phi(x)-\Phi(x')}$. Discriminative
-$\Abs{\Phi(x)-\Phi(x')}\geq C^{-1}\abs{f(x)-f(x')}$. For $x\in\Omega$, if
-$\Phi(\Omega)$ is bounded and a low dimension $d'$, then $\Abs{f-FM}\leq
-CM^{-1/d'}$. Digit classification $x'(u)=x(u-\tau(u))$. Can do some linearized
-work.
-
-Deep Convolutional Trees. $L_j$ is composed  of convolutions and subsamplings :
-\[
-  x_j(u,k_j)=\rho(x_{j-1}(\blk,k)\star h_{k_j,k}(u))
-\]
-
-Averaging filter.
-
-Multiscale averaging by cascade of yair averaging.
-
-
-
-
-
+% \noindent\textbf{Did they implement something?}
 
 %%% Local Variables:
 %%% TeX-master: "../MA598-DL-HW"
