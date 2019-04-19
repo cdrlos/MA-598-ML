@@ -10,7 +10,16 @@ problem which has not been previously addressed. Moreover, the point of view
 yields simple and fast methods of generating adversarial examples and provide
 examples for adversarial training. 
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} The authors show that a simple
+linear model can have adversarial examples if its input has sufficient
+dimensionality. This comes from the following observation. If we consider the
+product between a weight vector $\bfw$ and an adversarial example $\bar\bfx$, we
+have
+\[
+  \bfw\cdot\bar\bfx=\bfw\cdot\bfx+\bfw\cdot\bfeta
+\]
+with adversarial perturbation $\bfw\cdot\bfeta$, we can maximize the increase
+subject to the max norm constraint on $\bfeta$ by assigning $\bfeta=\sgn(\bfw)$.
 
 \noindent\textbf{What are the limitations, either in performance or applicability?}
 
@@ -46,7 +55,7 @@ examples for adversarial training.
 
 % Why do adversanrial examples generalize?
 
-% One adversarial example can attack multiple aversarial networks. 
+% One adversarial example can attack multiple aversarial networks 
 
 
 %%% Local Variables:
