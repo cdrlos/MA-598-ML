@@ -1,11 +1,25 @@
 \noindent \textbf{Title of paper:} ``'Explaining and Harnessing Adversarial
 Examples'' by Goodfellow, Shlens, and Szegedy. 
 
-\noindent\textbf{What is their primary result?}
+\noindent\textbf{What is their primary result?} The authors argue that a neural
+network's vulnerability to adversarial examples comes from its linear nature and
+no the nonlinearity and overfitting. 
 
-\noindent\textbf{Why is this important?}
+\noindent\textbf{Why is this important?} This work focuses on an aspect of the
+problem which has not been previously addressed. Moreover, the point of view
+yields simple and fast methods of generating adversarial examples and provide
+examples for adversarial training. 
 
-\noindent\textbf{What are their key ideas?}
+\noindent\textbf{What are their key ideas?} The authors show that a simple
+linear model can have adversarial examples if its input has sufficient
+dimensionality. This comes from the following observation. If we consider the
+product between a weight vector $\bfw$ and an adversarial example $\bar\bfx$, we
+have
+\[
+  \bfw\cdot\bar\bfx=\bfw\cdot\bfx+\bfw\cdot\bfeta
+\]
+with adversarial perturbation $\bfw\cdot\bfeta$, we can maximize the increase
+subject to the max norm constraint on $\bfeta$ by assigning $\bfeta=\sgn(\bfw)$.
 
 \noindent\textbf{What are the limitations, either in performance or applicability?}
 
@@ -17,33 +31,31 @@ Examples'' by Goodfellow, Shlens, and Szegedy.
 
 \noindent\textbf{Did they implement something?}
 
-Adversarial examples are inputs to a neural network that result in an incorrect
-output from the network.
+% Adversarial examples are inputs to a neural network that result in an incorrect
+% output from the network.
 
-Why this happens? Early attemps at explaining this problem focus on nonlinearity
-and overfitting and incufficient regularization.
+% Why this happens? Early attemps at explaining this problem focus on nonlinearity
+% and overfitting and incufficient regularization.
 
-Hypothesize: Neural networks are too linear to resist linear adversarial
-perturbation.
+% Hypothesize: Neural networks are too linear to resist linear adversarial
+% perturbation.
 
-LSTMs, ReLUs , and maxout networks are all intentionally designated to behave in
-very linear ways, so that they are easier to optimize.
+% LSTMs, ReLUs , and maxout networks are all intentionally designated to behave in
+% very linear ways, so that they are easier to optimize.
 
-Nonlinear models suchh as sigmoid networks are carefully.
+% Nonlinear models suchh as sigmoid networks are carefully.
 
-Introduction: Some previous work on adversarial examples.
+% Introduction: Some previous work on adversarial examples.
 
-That is misclasisfy examlpes that are slightly different from correctly
-classified examples.
-A wid variety of models with different architecture trainde
+% That is misclasisfy examlpes that are slightly different from correctly
+% classified examples.
+% A wid variety of models with different architecture trainde
 
-Open question.
+% Open question.
 
-Why do adversanrial examples generalize?
+% Why do adversanrial examples generalize?
 
-One adversarial example can attack multiple aversarial networks.
-
-
+% One adversarial example can attack multiple aversarial networks 
 
 
 %%% Local Variables:
