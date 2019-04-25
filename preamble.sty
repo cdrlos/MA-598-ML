@@ -64,7 +64,16 @@
 \DeclareFieldFormat{extraalpha}{#1}%
 % \renewcommand*{\thefootnote}{\fnsymbol{footnote}}
 
-%% Languages and fonts 
+\RequirePackage{ifxetex}
+\ifxetex
+\RequirePackage{unicode-math}
+% \setmainfont{Latin Modern Roman}
+% \setsansfont{Latin Modern Sans}
+% \setmonofont{Latin Modern Mono}
+% \setmathfont{Latin Modern Math}
+
+\else
+%% Languages and fonts
 \RequirePackage[T1]{fontenc}
 \RequirePackage[utf8]{inputenc}
 
@@ -77,7 +86,7 @@
 \if@sans
 \RequirePackage{esint}
 \RequirePackage{sansmathfonts}
-\fi
+\fi\fi
 
 %% Have the beamer Math punctuation match the sans font of the document 
 \@ifclassloaded{beamer}
@@ -207,6 +216,9 @@ numbered=no,
 
 %% For underlining
 \def\ul#1{\color{Red}\underline{{\color{black}#1}}\color{black}{}}
+\def\gul#1{\color{Green}\underline{{\color{black}#1}}\color{black}{}}
+\def\Red#1{\textcolor{Red}{#1}}
+\def\Green#1{\textcolor{Green}{#1}}
 
 %% Here comes a long list of symbols and definitions/redefinitions
 %% Missing Uppercase Greek 
@@ -502,8 +514,8 @@ numbered=no,
 \DeclareMathOperator{\Eval}{Eval}
 
 %% Elementary analysis
-\DeclareMathOperator*{\esssup}{ess\,sup}
-\DeclareMathOperator*{\essinf}{ess\,inf}
+\DeclareMathOperator*{\esssup}{ess\, sup}
+\DeclareMathOperator*{\essinf}{ess\, inf}
 \DeclareMathOperator{\supp}{supp}
 \DeclareMathOperator{\Supp}{Supp}
 \DeclareMathOperator{\dist}{dist}
@@ -580,8 +592,6 @@ numbered=no,
 
 %% Number theory
 \DeclareMathOperator{\Ch}{ch}
-\DeclareMathOperator{\cf}{cf}
-\DeclareMathOperator{\Cf}{Cf}
 \DeclareMathOperator{\Char}{char}
 \DeclareMathOperator{\Class}{Cls}
 \DeclareMathOperator{\sepdeg}{sep\,deg}
@@ -593,19 +603,18 @@ numbered=no,
 \DeclareMathOperator{\Frob}{Frob}
 
 %% Category theory
-\DeclareMathOperator*{\dirlim}{dir\,lim}
-\DeclareMathOperator*{\invlim}{inv\,lim}
+\DeclareMathOperator*{\dirlim}{dir\, lim}
+\DeclareMathOperator*{\invlim}{inv\, lim}
 
 %% Group theory
 \DeclareMathOperator{\ord}{ord}
 \DeclareMathOperator{\Mono}{Mono}
 \DeclareMathOperator{\Epi}{Epi}
 \DeclareMathOperator{\Syl}{Syl}
+\DeclareMathOperator{\Fra}{Fra}
 \DeclareMathOperator{\Ab}{Ab}
 \DeclareMathOperator{\Isom}{Isom}
-\DeclareMathOperator{\Fra}{Fra}
 \DeclareMathOperator{\FQ}{FQ}
-\DeclareMathOperator{\FN}{FN}
 
 %% Model theory
 \DeclareMathOperator{\Th}{Th}
